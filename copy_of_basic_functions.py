@@ -2,8 +2,12 @@ import os,time,keyboard,random
 import numpy as np
 from values import *
 
+def print_gameover():
+    write_high_score(p)
+    print(f"\n{gameover}")
+    exit()
+
 def print_map(map):
-    global p,hs
     os.system('cls')
     print(intro_text,"\n")
     for row in map:
@@ -33,15 +37,16 @@ def keyboard_input():
         return d
 
 def random_apple():
-    global m,o
     mapo=np.full((15,35),m)
     xo=random.randint(1,13)
     yo=random.randint(1,33)
     mapo[xo][yo]=o
     return mapo
 
+mapo=random_apple()
+
 def try_print_new_map():
-    global x,y,map,mapo,m,s,o,p
+    global map,mapo,p
     map=mapo
     try:
         if map[x][y]==o:
@@ -52,23 +57,17 @@ def try_print_new_map():
     except IndexError:
         pass
 
-def print_gameover():
-    write_high_score(p)
-    print(f"\n{gameover}")
-    exit()
-
 def go_up():
-    global x,y,map,mapo,m,s,o,p,game
+    global x,y,map
     map[x][y]=m
     x-=1
     if x<0:
         # x=14
         print_gameover()
     try_print_new_map()
-    
 
 def go_left():
-    global x,y,map,mapo,m,s,p,game
+    global x,y,map
     map[x][y]=m
     y-=1
     if y<0:
@@ -77,7 +76,7 @@ def go_left():
     try_print_new_map()
 
 def go_down():
-    global x,y,map,mapo,m,s,p,game
+    global x,y,map
     map[x][y]=m
     x+=1
     if x>14:
@@ -86,7 +85,7 @@ def go_down():
     try_print_new_map()
 
 def go_right():
-    global x,y,map,mapo,m,s,p,game
+    global x,y,map
     map[x][y]=m
     y+=1
     if y>34:
@@ -105,7 +104,7 @@ def where_to_go(d):
         go_right()
 
 def read_high_score():
-    global hs,filepath
+    global hs
     if os.path.exists(filepath):
         with open(filepath,'r') as file:
             hs=int(file.read())
@@ -114,7 +113,7 @@ def read_high_score():
     return hs
 
 def write_high_score(p):
-    global hs,filepath
+    global hs
     if p>hs:
         hs=p
         print(f"\n{newhighscore}{hs}\033[m")

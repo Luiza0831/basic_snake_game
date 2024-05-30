@@ -23,7 +23,6 @@ y=17
 d=''
 speedx=0.23
 speedy=0.3
-game=True
 
 #color code cheat sheet
 
