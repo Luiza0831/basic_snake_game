@@ -28,6 +28,9 @@ def keyboard_input():
     if keyboard.is_pressed('e'):
         d='exit'
         return d
+    if keyboard.is_pressed('p'):
+        d='pause'
+        return d
 
 def random_apple():
     global m,o
