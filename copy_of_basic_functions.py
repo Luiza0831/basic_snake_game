@@ -3,12 +3,13 @@ import numpy as np
 from values import *
 
 def print_map(map):
-    global p
+    global p,hs
     os.system('cls')
     print(intro_text,"\n")
     for row in map:
         print("".join(row))
     print(f"\n{score}{p}\033[m")
+    print(f"\n{highscore}{hs}\033[m")
 
 def keyboard_input():
     global d
@@ -49,7 +50,8 @@ def try_print_new_map():
         pass
 
 def print_gameover():
-    print(gameover)
+    write_high_score(p)
+    print(f"\n{gameover}")
     exit()
 
 def go_up():
@@ -98,3 +100,20 @@ def where_to_go(d):
         go_down()
     if d=='right':
         go_right()
+
+def read_high_score():
+    global hs,filepath
+    if os.path.exists(filepath):
+        with open(filepath,'r') as file:
+            hs=int(file.read())
+    else:
+        hs=0
+    return hs
+
+def write_high_score(p):
+    global hs,filepath
+    if p>hs:
+        hs=p
+        print(f"\n{newhighscore}{hs}\033[m")
+    with open(filepath,'w') as file:
+        file.write(str(hs))

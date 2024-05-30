@@ -1,12 +1,18 @@
 import numpy as np
 
-intro_text="\033[1;37;40mPress or hold 'w''a''s''d' to move up, left, down or right.\nDon't hit the walls and try to get as many apples as you can!\nHold 'e' to exit game.\033[m"
+intro_text="""\033[1;37;40mPress or hold 'w''a''s''d' to move up, left, down or right.
+Don't hit the walls and try to get as many apples as you can!\nHold 'e' to exit game.
+Try again by pressing the ^ key and enter.
+Have fun!\033[m"""
 gameover="\033[1;37;40mGame Over!\033[m"
 goodbye="\033[1;37;40mGoodbye!\033[m"
 score="\033[1;37;40mYour score : "
+highscore="\033[1;37;40mHighscore : "
+newhighscore="\033[1;37;40mNew Highscore : "
 m="\033[40;37m \033[m"
 s="\033[40;37mx\033[m"
 o="\033[40;37mo\033[m"
+filepath="snake_high_score.txt"
 p=0
 map=np.full((15,35),m)
 x=7
