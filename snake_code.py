@@ -28,6 +28,9 @@ def keyboard_input():
     if keyboard.is_pressed('e'):
         d='exit'
         return d
+    if keyboard.is_pressed('p'):
+        d='pause'
+        return d
 
 def random_apple():
     global m,o
@@ -168,5 +171,11 @@ def snake():
             print(f"\n{goodbye}")
             write_high_score(p)
             exit()
+        while d=='pause':
+            if keyboard_input()=='up' or keyboard_input()=='left' or keyboard_input()=='down'or keyboard_input()=='right' or keyboard_input()=='exit':
+                break
+            print(f"\n{pause}")
+            time.sleep(0.1)
+            print_map(map)
         
 snake()
